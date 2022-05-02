@@ -6,36 +6,39 @@
 
 <ion-content>
   <!-- <ion-card> -->
-    <form (ngSubmit)="login()" [formGroup]="credentials">
+    <form (ngSubmit)="logon()" [formGroup]="credentials">
       <div class="input-group">
         <ion-item>
           <!-- <ion-label>Username</ion-label> -->
           <ion-input type="username" placeholder="username" formControlName="username"></ion-input>
           
-          <div *ngIf="(email.dirty || email.touched) && email.errors" class="errors">
-            <span *ngIf="email.errors?.required">Email is required</span>
-            <span *ngIf="email.errors?.email">Email is invalid</span>
-          </div>
           <hr/>
         </ion-item>
+        <div *ngIf="(username.dirty || username.touched) && username.errors" class="errors">
+          <span *ngIf="username.errors?.required">Username is required</span>
+        </div>
         <ion-item>
           <!-- <ion-label>Password</ion-label> -->
           <app-show-hide-password>
             <ion-input type="password" placeholder="password" formControlName="password"></ion-input>
           </app-show-hide-password>
         </ion-item>
+        <div *ngIf="(password.dirty || password.touched) && password.errors" class="errors">
+          <span *ngIf="password.errors?.required">Password is required</span>
+          <span *ngIf="password.errors?.minlength">Password needs to be 8 characters</span>
+        </div>
 
       </div>
       <!-- <ion-checkbox color="light">
         Remember Me
       </ion-checkbox> -->
       <hr/>
-      <ion-button type="submit" expand="block" color="light">Logon <ion-icon name="chevron-forward"></ion-icon></ion-button>
+      <ion-button type="submit" expand="block" [disabled]="!credentials.valid" color="light">Logon <ion-icon name="chevron-forward"></ion-icon></ion-button>
     
     </form>
     
   <!-- </ion-card> -->
   
-  <ion-button (click)="setupPW()" fill="clear" id="return"><ion-icon name="return-up-back"></ion-icon>   &nbsp;Don't have a password?</ion-button>
+  <ion-button (click)="setupPW()" fill="clear" id="return"><ion-icon name="return-up-back"></ion-icon>  Don't have a password?</ion-button>
 
 </ion-content>

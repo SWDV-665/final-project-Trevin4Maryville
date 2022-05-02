@@ -11,7 +11,8 @@ const TOKEN_KEY = 'my-token';
   providedIn: 'root'
 })
 export class AuthenticationService {
-
+  baseURL = "http://localhost:8080";
+  
   isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
   token = '';
 
@@ -30,8 +31,23 @@ export class AuthenticationService {
     }
   }
 
+  newCredentials(credentials: {username, password}): Observable<any> {
+    console.log(credentials)
+    return this.http.post(this.baseURL + "/api/createLogin/", credentials).pipe(
+      map((data: any) => data.token),
+      switchMap(token => {
+        return from(Storage.set({key: TOKEN_KEY, value: token}));
+      }),
+      tap(_ => {
+        this.isAuthenticated.next(false);
+      })
+    )
+  }
+
   logon(credentials: {username, password}): Observable<any> {
-    return this.http.post(`http://reqres.in/api/login`, credentials).pipe(
+    console.log(credentials)
+
+    return this.http.get(this.baseURL + "/api/login/", {params: credentials}).pipe(
       map((data: any) => data.token),
       switchMap(token => {
         return from(Storage.set({key: TOKEN_KEY, value: token}));
