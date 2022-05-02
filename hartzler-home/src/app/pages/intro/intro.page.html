@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Getting Started</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides pager="true">
+    <!-- Page1 -->
+    <ion-slide>
+      <ion-list lines = 'full' class="ion-no-margin">
+        <ion-list-header>
+          <ion-label>Create Your Account:</ion-label>
+        </ion-list-header>
+        <ion-item>
+          <ion-label>Username</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Password</ion-label>
+          <app-show-hide-password>
+            <ion-input type="password" placeholder="password"></ion-input>
+          </app-show-hide-password>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Password</ion-label>
+          <app-show-hide-password>
+            <ion-input type="password" placeholder="confirm password"></ion-input>
+          </app-show-hide-password>
+        </ion-item>
+        <p>
+           
+        </p>
+        
+        <ion-button (click)="next()" color="light">Create</ion-button>
+        <ion-button (click)="start()" color="light">Already have a password?</ion-button>
+
+
+      </ion-list>
+    </ion-slide>
+    
+    
+    <!-- Page2 -->
+    <ion-slide>  <!-- *ngIf=""> to only show what is not available until PW already entered? -->
+      <ion-text>
+        <h1>Account Creation Sucess!</h1>
+        <p>
+        You may now begin using the app!
+        <br/><br/>
+        Don't forget your newly created password.
+        </p>
+        
+        <ion-button (click)="start()" color="light">Get Started</ion-button>
+        <br/><br/><br/><br/><br/><br/>
+      </ion-text>
+      
+    </ion-slide>
+
+  </ion-slides>
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "Hartzler-Home",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
